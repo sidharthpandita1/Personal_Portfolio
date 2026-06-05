@@ -25,3 +25,8 @@ main {
   background-color: var(--color-accent);
   color: var(--color-bg);
 }
+
+// Preloader scroll lock
+body.is-loading {
+  overflow: hidden;
+}

@@ -1,0 +1,30 @@
+---
+// Custom dot cursor. JS in cursor.js drives position + scale via GSAP quickTo.
+// Hidden via CSS on touch devices and prefers-reduced-motion.
+---
+
+<div id="cursor" class="cursor" aria-hidden="true"></div>
+
+<style lang="scss">
+.cursor {
+  position: fixed;
+  top: -4px;   /* offsets so cursor center = pointer hotspot */
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-fg);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  opacity: 0;  /* JS reveals on first mousemove */
+  will-change: transform;
+
+  @media (hover: none) {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
+}
+</style>

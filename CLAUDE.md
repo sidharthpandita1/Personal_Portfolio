@@ -104,4 +104,4 @@ npm run preview   # preview the production build
 
 Update this line at the end of each phase so future sessions know where to resume:
 
-> **Current phase:** Current phase: Phase 1 + Lenis foundation complete. Next: Cursor + Preloader
+> **Current phase:** Phase 2 complete — Cursor + Preloader built. Ready for Phase 3 (pages with dummy content).

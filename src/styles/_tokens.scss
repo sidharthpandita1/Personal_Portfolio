@@ -53,7 +53,7 @@
   // Layout
   --max-width: 1440px;
   --header-h: 5rem;
-  --z-cursor: 9999;
-  --z-preloader: 9998;
   --z-nav: 100;
+  --z-cursor: 9000;
+  --z-preloader: 9999; /* must sit above cursor while loading */
 }

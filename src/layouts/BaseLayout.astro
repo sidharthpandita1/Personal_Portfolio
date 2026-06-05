@@ -2,6 +2,8 @@
 import { ClientRouter } from 'astro:transitions';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import Cursor from '../components/layout/Cursor.astro';
+import Preloader from '../components/motion/Preloader.astro';
 import '../styles/global.scss';
 
 interface Props {
@@ -26,30 +28,37 @@ const {
     <ClientRouter />
   </head>
   <body class="page">
+    <Preloader />
     <Header />
     <main>
       <slot />
     </main>
     <Footer />
+    <Cursor />
 
     <script>
       import { initLenis, destroyLenis } from '../scripts/lenis.js';
+      import { initCursor, destroyCursor } from '../scripts/cursor.js';
+      import { initPreloader } from '../scripts/preloader.js';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
       function init() {
         initLenis();
+        initCursor();
         ScrollTrigger.refresh();
       }
 
       function cleanup() {
         destroyLenis();
+        destroyCursor();
         ScrollTrigger.getAll().forEach((t) => t.kill());
       }
 
-      // Initial load
+      // Preloader is session-based: run once on first ever page load.
+      // On subsequent navigations the sessionStorage flag makes it a no-op.
+      initPreloader();
       init();
 
-      // Astro View Transitions lifecycle
       document.addEventListener('astro:before-preparation', cleanup);
       document.addEventListener('astro:after-swap', init);
     </script>
