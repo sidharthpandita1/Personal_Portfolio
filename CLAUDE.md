@@ -104,4 +104,4 @@ npm run preview   # preview the production build
 
 Update this line at the end of each phase so future sessions know where to resume:
 
-> **Current phase:** Not started — run Phase 1 from PORTFOLIO_PLAN.md
+> **Current phase:** Current phase: Phase 1 + Lenis foundation complete. Next: Cursor + Preloader

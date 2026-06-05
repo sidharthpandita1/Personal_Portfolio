@@ -1,0 +1,57 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.scss';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Portfolio',
+  description = 'Creative developer portfolio',
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body class="page">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import { initLenis, destroyLenis } from '../scripts/lenis.js';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      function init() {
+        initLenis();
+        ScrollTrigger.refresh();
+      }
+
+      function cleanup() {
+        destroyLenis();
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      }
+
+      // Initial load
+      init();
+
+      // Astro View Transitions lifecycle
+      document.addEventListener('astro:before-preparation', cleanup);
+      document.addEventListener('astro:after-swap', init);
+    </script>
+  </body>
+</html>

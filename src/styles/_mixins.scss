@@ -1,0 +1,41 @@
+// Breakpoints
+$bp-sm:  640px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;
+$bp-2xl: 1536px;
+
+@mixin sm  { @media (min-width: #{$bp-sm})  { @content; } }
+@mixin md  { @media (min-width: #{$bp-md})  { @content; } }
+@mixin lg  { @media (min-width: #{$bp-lg})  { @content; } }
+@mixin xl  { @media (min-width: #{$bp-xl})  { @content; } }
+@mixin xxl { @media (min-width: #{$bp-2xl}) { @content; } }
+
+@mixin touch {
+  @media (hover: none) and (pointer: coarse) { @content; }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}
+
+// Full-bleed container respecting --grid-margin
+@mixin container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+
+// Visually hidden but accessible
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

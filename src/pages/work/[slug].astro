@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [{ params: { slug: 'example-project' } }];
+}
+
+const { slug } = Astro.params;
+---
+
+<BaseLayout title={`${slug} — Work — Portfolio`}>
+  <section class="placeholder">
+    <p>Case study: {slug} — coming in Phase 3</p>
+  </section>
+</BaseLayout>
+
+<style>
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: var(--color-fg-muted);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+</style>

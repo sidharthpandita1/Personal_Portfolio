@@ -1,0 +1,59 @@
+:root {
+  // Colors
+  --color-bg:       #0d0d0d;
+  --color-bg-alt:   #141414;
+  --color-fg:       #f0ece4;
+  --color-fg-muted: #8a8078;
+  --color-accent:   #c8b99a;
+  --color-border:   #2a2a2a;
+
+  // Type scale (fluid, min → max)
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.375vw, 1rem);
+  --text-base: clamp(1rem,     0.9rem  + 0.5vw,   1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.625vw, 1.375rem);
+  --text-xl:   clamp(1.25rem,  1.1rem  + 0.75vw,  1.625rem);
+  --text-2xl:  clamp(1.5rem,   1.2rem  + 1.5vw,   2.25rem);
+  --text-3xl:  clamp(2rem,     1.5rem  + 2.5vw,   3.5rem);
+  --text-4xl:  clamp(2.75rem,  2rem    + 3.75vw,  5.5rem);
+  --text-5xl:  clamp(3.5rem,   2.5rem  + 5vw,     8rem);
+
+  // Spacing (8px base)
+  --space-1:  0.5rem;   //  8px
+  --space-2:  1rem;     // 16px
+  --space-3:  1.5rem;   // 24px
+  --space-4:  2rem;     // 32px
+  --space-5:  3rem;     // 48px
+  --space-6:  4rem;     // 64px
+  --space-7:  6rem;     // 96px
+  --space-8:  8rem;     // 128px
+  --space-9:  12rem;    // 192px
+  --space-10: 16rem;    // 256px
+
+  // Grid
+  --grid-gutter: clamp(1rem, 4vw, 2rem);
+  --grid-margin: clamp(1.5rem, 6vw, 6rem);
+
+  // Easing
+  --ease-out-expo:  cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-expo:   cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-in-out:    cubic-bezier(0.76, 0, 0.24, 1);
+
+  // Transitions
+  --duration-fast:   200ms;
+  --duration-base:   400ms;
+  --duration-slow:   800ms;
+  --duration-x-slow: 1200ms;
+
+  // Font families
+  --font-sans: 'Neue Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+
+  // Layout
+  --max-width: 1440px;
+  --header-h: 5rem;
+  --z-cursor: 9999;
+  --z-preloader: 9998;
+  --z-nav: 100;
+}

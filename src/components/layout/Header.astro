@@ -1,0 +1,77 @@
+---
+const navLinks = [
+  { href: '/work', label: 'Work' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo" aria-label="Home">SP</a>
+    <nav class="header__nav" aria-label="Main navigation">
+      <ul>
+        {navLinks.map(({ href, label }) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style lang="scss">
+@use '../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  padding-inline: var(--grid-margin);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+  background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+
+  &__logo {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-fg);
+    transition: color var(--duration-fast) ease;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__nav ul {
+    display: flex;
+    gap: var(--space-4);
+
+    a {
+      font-size: var(--text-sm);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-fg-muted);
+      transition: color var(--duration-fast) ease;
+
+      &:hover,
+      &[aria-current='page'] {
+        color: var(--color-fg);
+      }
+    }
+  }
+}
+</style>
