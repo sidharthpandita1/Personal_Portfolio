@@ -10,6 +10,8 @@ const projects = [
   { num: '05', title: 'Drift Festival',    category: 'Motion & Identity',   year: '2023', color: '#1b2a3a', slug: 'example-project' },
   { num: '06', title: 'Pale Studio',       category: 'Web & Animation',     year: '2022', color: '#2a1b1b', slug: 'example-project' },
 ];
+
+// Colors exposed as data attributes so the WebGL shader can read them.
 ---
 
 <BaseLayout title="Work — Portfolio">
@@ -32,6 +34,7 @@ const projects = [
               class={styles.cardThumb}
               style={`background-color: ${color}`}
               data-webgl-hover
+              data-color={color}
             ></div>
             <div class={styles.cardMeta}>
               <span class={styles.cardTitle}>{title}</span>
@@ -44,4 +47,15 @@ const projects = [
     </ul>
   </section>
 
+<!-- WebGL canvas — fixed overlay, pointer-events: none -->
+<canvas id="webgl-canvas" class={styles.webglCanvas} aria-hidden="true"></canvas>
+
 </BaseLayout>
+
+<script>
+  import { initWebGLDistortion, destroyWebGLDistortion } from '../../scripts/webgl/imageDistortion.js';
+
+  // Three.js lazy-loads inside initWebGLDistortion.
+  document.addEventListener('portfolio:init', initWebGLDistortion);
+  document.addEventListener('astro:before-preparation', destroyWebGLDistortion);
+</script>
