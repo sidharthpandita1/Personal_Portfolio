@@ -43,12 +43,14 @@ const {
       import { initCursor, destroyCursor } from '../scripts/cursor.js';
       import { initPreloader } from '../scripts/preloader.js';
       import { playTransitionIn, playTransitionOut } from '../scripts/transitions.js';
+      import { initSplitText, destroySplitText } from '../scripts/splitText.js';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
       function init() {
         initLenis();
         initCursor();
         ScrollTrigger.refresh();
+        initSplitText();
         // Pages with per-page animations listen for this event.
         document.dispatchEvent(new CustomEvent('portfolio:init'));
       }
@@ -56,6 +58,7 @@ const {
       function cleanup() {
         destroyLenis();
         destroyCursor();
+        destroySplitText();
         ScrollTrigger.getAll().forEach((t) => t.kill());
       }
 
