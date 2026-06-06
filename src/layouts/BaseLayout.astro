@@ -54,11 +54,12 @@ const {
         ScrollTrigger.getAll().forEach((t) => t.kill());
       }
 
-      // Preloader is session-based: run once on first ever page load.
-      // On subsequent navigations the sessionStorage flag makes it a no-op.
-      initPreloader();
-      init();
+      // First load: preloader paints first, Lenis + cursor mount only after
+      // the overlay exits. On repeat visits onDone fires synchronously.
+      initPreloader(() => init());
 
+      // Page transitions: preloader is already done (session flag), so init
+      // runs immediately on swap without waiting for any animation.
       document.addEventListener('astro:before-preparation', cleanup);
       document.addEventListener('astro:after-swap', init);
     </script>
