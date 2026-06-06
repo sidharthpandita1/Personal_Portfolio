@@ -1,22 +1,101 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import styles from './about.module.scss';
+
+const capabilities = [
+  {
+    title: 'Development',
+    items: ['Astro / Next.js', 'GSAP & Motion', 'Three.js / WebGL', 'SCSS & Design Systems', 'Performance & A11y'],
+  },
+  {
+    title: 'Design',
+    items: ['UI & Interaction', 'Art Direction', 'Typography', 'Motion Design', 'Figma'],
+  },
+  {
+    title: 'Process',
+    items: ['Discovery & Strategy', 'Prototyping', 'Component Architecture', 'Cross-team Collaboration', 'Code Review'],
+  },
+];
+
+const timeline = [
+  { year: '2019', event: 'First line of code',    desc: 'Taught myself HTML, CSS, and JavaScript. Built first projects for friends and local businesses.' },
+  { year: '2020', event: 'First client work',     desc: 'Launched small business sites. Discovered a love for animation and interaction design.' },
+  { year: '2021', event: 'Agency life',           desc: 'Joined a digital agency. Shipped campaigns for global brands and learned production at scale.' },
+  { year: '2022', event: 'Went independent',      desc: 'Left the agency to freelance. Focused on high-craft digital experiences for creative studios.' },
+  { year: '2023', event: 'Awwwards recognition',  desc: 'First SOTD nomination. Began speaking at local meetups about creative development.' },
+  { year: '2024', event: 'Studio collaborations', desc: 'Working with a small network of designers on larger, multi-month engagements.' },
+];
 ---
 
 <BaseLayout title="About — Portfolio">
-  <section class="placeholder">
-    <p>About — coming in Phase 3</p>
-  </section>
-</BaseLayout>
 
-<style>
-.placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  color: var(--color-fg-muted);
-  font-size: var(--text-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-</style>
+  <!-- Bio -->
+  <section class={styles.bio}>
+    <div class={styles.bioInner}>
+      <div>
+        <h1 class={styles.bioHeading}>Creative<br />Developer</h1>
+      </div>
+      <div>
+        <span class={styles.bioRole}>Design × Code × Motion</span>
+        <div class={styles.bioCopy}>
+          <p>
+            I'm a creative developer with five years of experience building
+            websites and digital experiences that earn their place on Awwwards.
+            I work at the boundary between design and engineering — writing the
+            code that makes ideas feel alive.
+          </p>
+          <p>
+            My background spans branding, interactive art direction, and
+            front-end engineering. I'm drawn to projects that demand both
+            rigorous craft and genuine curiosity.
+          </p>
+        </div>
+        <p class={styles.bioLocation}>Based in London, UK · Available worldwide</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class={styles.capabilities}>
+    <div class={styles.capabilitiesInner}>
+      <span class={styles.sectionLabel}>Capabilities</span>
+      <div class={styles.capabilitiesGrid}>
+        {capabilities.map(({ title, items }) => (
+          <div class={styles.capCol}>
+            <p class={styles.capColTitle}>{title}</p>
+            <ul class={styles.capList}>
+              {items.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline — horizontal structure; ScrollTrigger pin added in Phase 4 -->
+  <section class={styles.timeline} data-horizontal-scroll>
+    <span class={styles.timelineLabel}>Timeline</span>
+    <div class={styles.timelineTrack} data-timeline-track>
+      {timeline.map(({ year, event, desc }) => (
+        <div class={styles.timelineItem}>
+          <p class={styles.timelineYear}>{year}</p>
+          <p class={styles.timelineEvent}>{event}</p>
+          <p class={styles.timelineDesc}>{desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Connect -->
+  <section class={styles.connect}>
+    <div class={styles.connectInner}>
+      <p class={styles.connectText}>
+        Have a project in mind? Let's make something worth sharing.
+      </p>
+      <a href="mailto:hello@portfolio.com" class={styles.connectLink} data-cursor="grow">
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

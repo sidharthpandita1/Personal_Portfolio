@@ -1,0 +1,123 @@
+@use '../../styles/mixins' as *;
+
+/* ── Page header ────────────────────────────────────── */
+
+.header {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-6);
+  padding-inline: var(--grid-margin);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.headerInner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.pageTitle {
+  font-size: clamp(3rem, 1.5rem + 8vw, 9rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+.count {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 0.4em;
+}
+
+/* ── Work grid ──────────────────────────────────────── */
+
+.grid {
+  padding-block: var(--space-7);
+  padding-inline: var(--grid-margin);
+}
+
+.gridInner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: grid;
+  gap: var(--grid-gutter);
+  grid-template-columns: 1fr;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Project card ───────────────────────────────────── */
+
+.card {
+  display: block;
+
+  &:hover .cardThumb::after {
+    opacity: 1;
+  }
+
+  &:hover .cardArrow {
+    transform: translate(3px, -3px);
+  }
+}
+
+.cardThumb {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+
+  /* Phase 4: WebGL distortion mounts here */
+
+  &::after {
+    content: 'View case study →';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transition: opacity var(--duration-base) ease;
+  }
+}
+
+.cardMeta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.cardTitle {
+  font-size: var(--text-base);
+  color: var(--color-fg);
+  font-weight: 400;
+}
+
+.cardYear {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.06em;
+}
+
+.cardCat {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.04em;
+}

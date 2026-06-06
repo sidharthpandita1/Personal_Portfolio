@@ -1,0 +1,259 @@
+@use '../styles/mixins' as *;
+
+/* ── Shared ─────────────────────────────────────────── */
+
+.sectionLabel {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-5);
+}
+
+/* ── Bio ────────────────────────────────────────────── */
+
+.bio {
+  padding-block: var(--space-9);
+  padding-inline: var(--grid-margin);
+  border-bottom: 1px solid var(--color-border);
+  min-height: 80svh;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bioInner {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: grid;
+  gap: var(--space-7);
+
+  @include lg {
+    grid-template-columns: 1fr 1.4fr;
+    align-items: end;
+    gap: var(--space-8);
+  }
+}
+
+.bioHeading {
+  font-size: clamp(3rem, 1.5rem + 8vw, 9rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.93;
+}
+
+.bioRole {
+  font-size: var(--text-sm);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+  display: block;
+}
+
+.bioCopy {
+  p {
+    font-size: var(--text-lg);
+    line-height: 1.55;
+    color: var(--color-fg);
+    max-width: 50ch;
+
+    + p {
+      margin-top: var(--space-4);
+      color: var(--color-fg-muted);
+      font-size: var(--text-base);
+    }
+  }
+}
+
+.bioLocation {
+  margin-top: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+
+  &::before {
+    content: '●';
+    font-size: 0.4em;
+    color: var(--color-accent);
+  }
+}
+
+/* ── Capabilities ───────────────────────────────────── */
+
+.capabilities {
+  padding-block: var(--space-9);
+  padding-inline: var(--grid-margin);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.capabilitiesInner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+.capabilitiesGrid {
+  display: grid;
+  gap: var(--grid-gutter);
+  grid-template-columns: 1fr;
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.capCol {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+
+.capColTitle {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+}
+
+.capList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+
+  li {
+    font-size: var(--text-base);
+    color: var(--color-fg);
+    line-height: 1.4;
+
+    &::before {
+      content: '—  ';
+      color: var(--color-fg-muted);
+    }
+  }
+}
+
+/* ── Timeline ───────────────────────────────────────── */
+
+.timeline {
+  padding-block: var(--space-9);
+  padding-inline: var(--grid-margin);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.timelineLabel {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-6);
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+.timelineTrack {
+  display: flex;
+  gap: clamp(2rem, 6vw, 5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-3);
+  cursor: grab;
+
+  /* Phase 4 will pin + scrub this with ScrollTrigger */
+
+  &::-webkit-scrollbar {
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-fg-muted);
+  }
+}
+
+.timelineItem {
+  flex: 0 0 clamp(14rem, 25vw, 22rem);
+  scroll-snap-align: start;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+
+.timelineYear {
+  font-size: var(--text-3xl);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-fg);
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+
+.timelineEvent {
+  font-size: var(--text-sm);
+  color: var(--color-fg);
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+}
+
+.timelineDesc {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  line-height: 1.6;
+}
+
+/* ── Connect ────────────────────────────────────────── */
+
+.connect {
+  padding-block: var(--space-9);
+  padding-inline: var(--grid-margin);
+}
+
+.connectInner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+}
+
+.connectText {
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  max-width: 30ch;
+}
+
+.connectLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  border: 1px solid var(--color-border);
+  padding: var(--space-2) var(--space-4);
+  transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease;
+
+  &::after {
+    content: '→';
+    transition: transform var(--duration-fast) var(--ease-out-expo);
+  }
+
+  &:hover {
+    color: var(--color-fg);
+    border-color: var(--color-fg-muted);
+
+    &::after {
+      transform: translateX(4px);
+    }
+  }
+}

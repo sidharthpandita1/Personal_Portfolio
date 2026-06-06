@@ -104,4 +104,4 @@ npm run preview   # preview the production build
 
 Update this line at the end of each phase so future sessions know where to resume:
 
-> **Current phase:** Phase 2 complete — Cursor + Preloader built. Ready for Phase 3 (pages with dummy content).
+> **Current phase:** Phase 3 complete — all four pages built with dummy content. Ready for Phase 4 (Awwwards features).

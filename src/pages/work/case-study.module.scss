@@ -1,0 +1,217 @@
+@use '../../styles/mixins' as *;
+
+/* ── Case study hero ────────────────────────────────── */
+
+.hero {
+  min-height: 80svh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--space-7);
+  padding-inline: var(--grid-margin);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.heroInner {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+.heroLabel {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-4);
+}
+
+.heroTitle {
+  font-size: clamp(2.75rem, 1.5rem + 7.5vw, 9rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  margin-bottom: var(--space-6);
+}
+
+.heroDesc {
+  font-size: var(--text-lg);
+  color: var(--color-fg-muted);
+  max-width: 52ch;
+  line-height: 1.5;
+}
+
+/* ── Meta bar ───────────────────────────────────────── */
+
+.meta {
+  padding-block: var(--space-6);
+  padding-inline: var(--grid-margin);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.metaInner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--grid-gutter);
+
+  @include md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.metaItem {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+}
+
+.metaKey {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.metaVal {
+  font-size: var(--text-base);
+  color: var(--color-fg);
+}
+
+/* ── Hero image ─────────────────────────────────────── */
+
+.heroImg {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+/* ── Content body ───────────────────────────────────── */
+
+.body {
+  padding-block: var(--space-9);
+  padding-inline: var(--grid-margin);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bodyInner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: grid;
+  gap: var(--space-9);
+
+  @include lg {
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-8);
+  }
+}
+
+.sectionTitle {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.sectionBody {
+  p {
+    font-size: var(--text-base);
+    color: var(--color-fg-muted);
+    line-height: 1.75;
+    max-width: 65ch;
+
+    + p {
+      margin-top: var(--space-3);
+    }
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    color: var(--color-fg);
+    font-weight: 500;
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-6);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ── Content image blocks ───────────────────────────── */
+
+.imgFull {
+  padding-inline: var(--grid-margin);
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.imgGrid {
+  display: grid;
+  gap: var(--grid-gutter);
+  grid-template-columns: 1fr;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.imgBlock {
+  aspect-ratio: 4 / 3;
+}
+
+/* ── Next project ───────────────────────────────────── */
+
+.next {
+  padding-block: var(--space-8);
+  padding-inline: var(--grid-margin);
+}
+
+.nextInner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.nextLabel {
+  font-size: var(--text-xs);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.nextLink {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+
+  span {
+    font-size: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+    transition: color var(--duration-fast) ease;
+  }
+
+  .nextArrow {
+    font-size: var(--text-2xl);
+    color: var(--color-fg-muted);
+    transition: transform var(--duration-fast) var(--ease-out-expo),
+                color var(--duration-fast) ease;
+  }
+
+  &:hover span {
+    color: var(--color-accent);
+  }
+
+  &:hover .nextArrow {
+    transform: translate(4px, -4px);
+    color: var(--color-accent);
+  }
+}

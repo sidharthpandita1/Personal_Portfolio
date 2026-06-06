@@ -1,22 +1,47 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import styles from './work.module.scss';
+
+const projects = [
+  { num: '01', title: 'Meridian Studio',   category: 'Brand & Web',         year: '2024', color: '#14142b', slug: 'example-project' },
+  { num: '02', title: 'Nocturne App',      category: 'Product Design',      year: '2024', color: '#2c1b34', slug: 'example-project' },
+  { num: '03', title: 'Soleil Editorial',  category: 'Art Direction',       year: '2023', color: '#1b3226', slug: 'example-project' },
+  { num: '04', title: 'Forma Objects',     category: 'E-Commerce',          year: '2023', color: '#3a2a1b', slug: 'example-project' },
+  { num: '05', title: 'Drift Festival',    category: 'Motion & Identity',   year: '2023', color: '#1b2a3a', slug: 'example-project' },
+  { num: '06', title: 'Pale Studio',       category: 'Web & Animation',     year: '2022', color: '#2a1b1b', slug: 'example-project' },
+];
 ---
 
 <BaseLayout title="Work — Portfolio">
-  <section class="placeholder">
-    <p>Work — coming in Phase 3</p>
-  </section>
-</BaseLayout>
 
-<style>
-.placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  color: var(--color-fg-muted);
-  font-size: var(--text-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-</style>
+  <!-- Page header -->
+  <header class={styles.header}>
+    <div class={styles.headerInner}>
+      <h1 class={styles.pageTitle}>Work</h1>
+      <span class={styles.count}>Selected projects ({projects.length})</span>
+    </div>
+  </header>
+
+  <!-- Work grid — Phase 4 adds WebGL hover distortion -->
+  <section class={styles.grid}>
+    <ul class={styles.gridInner}>
+      {projects.map(({ num, title, category, year, color, slug }) => (
+        <li>
+          <a href={`/work/${slug}`} class={styles.card} data-cursor="grow">
+            <div
+              class={styles.cardThumb}
+              style={`background-color: ${color}`}
+              data-webgl-hover
+            ></div>
+            <div class={styles.cardMeta}>
+              <span class={styles.cardTitle}>{title}</span>
+              <span class={styles.cardYear}>{year}</span>
+            </div>
+            <span class={styles.cardCat}>{category}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+</BaseLayout>

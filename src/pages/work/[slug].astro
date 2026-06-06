@@ -1,28 +1,121 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import styles from './case-study.module.scss';
 
 export function getStaticPaths() {
   return [{ params: { slug: 'example-project' } }];
 }
 
 const { slug } = Astro.params;
+
+const project = {
+  title: 'Meridian Studio',
+  description: 'A digital identity system for an independent architecture practice — built to flex across print, screen, and environmental signage.',
+  year: '2024',
+  client: 'Meridian Architecture',
+  role: 'Creative Developer',
+  type: 'Brand & Web',
+  heroColor: '#14142b',
+  imgColors: ['#1e1e38', '#12122a'],
+};
 ---
 
-<BaseLayout title={`${slug} — Work — Portfolio`}>
-  <section class="placeholder">
-    <p>Case study: {slug} — coming in Phase 3</p>
-  </section>
-</BaseLayout>
+<BaseLayout title={`${project.title} — Work — Portfolio`}>
 
-<style>
-.placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  color: var(--color-fg-muted);
-  font-size: var(--text-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-</style>
+  <!-- Hero -->
+  <section class={styles.hero}>
+    <div class={styles.heroInner}>
+      <span class={styles.heroLabel}>Work / {project.type}</span>
+      <h1 class={styles.heroTitle}>{project.title}</h1>
+      <p class={styles.heroDesc}>{project.description}</p>
+    </div>
+  </section>
+
+  <!-- Meta -->
+  <div class={styles.meta}>
+    <div class={styles.metaInner}>
+      {[
+        { key: 'Year',   val: project.year   },
+        { key: 'Client', val: project.client  },
+        { key: 'Role',   val: project.role    },
+        { key: 'Type',   val: project.type    },
+      ].map(({ key, val }) => (
+        <div class={styles.metaItem}>
+          <span class={styles.metaKey}>{key}</span>
+          <span class={styles.metaVal}>{val}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Hero image placeholder -->
+  <div
+    class={styles.heroImg}
+    style={`background-color: ${project.heroColor}`}
+    role="img"
+    aria-label={`${project.title} hero visual`}
+  ></div>
+
+  <!-- Case study body -->
+  <div class={styles.body}>
+    <div class={styles.bodyInner}>
+      <p class={styles.sectionTitle}>Overview</p>
+      <div class={styles.sectionBody}>
+        <p>
+          Meridian came to us needing a visual language that could live comfortably
+          in both the precision of architectural drawings and the warmth of a studio
+          that prizes human scale above all else.
+        </p>
+        <p>
+          We started with typographic research, settling on a custom pairing that
+          respects the grid-heavy tradition of architectural presentation while
+          breathing room for prose. The site needed to feel like a considered space,
+          not a catalogue.
+        </p>
+
+        <h3>Approach</h3>
+        <p>
+          The build is Astro with GSAP-driven page transitions and a custom cursor
+          that responds to the image grid on the Projects page. Three.js handles the
+          subtle distortion on hover — nothing that upstages the photography, but
+          enough to signal that someone cared.
+        </p>
+        <p>
+          All 40+ project pages generate statically from a Notion database via the
+          Notion API. Editors can publish new work without touching code or deployments.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two-up image block -->
+  <div class={styles.imgFull}>
+    <div class={styles.imgGrid}>
+      {project.imgColors.map((color, i) => (
+        <div
+          class={styles.imgBlock}
+          style={`background-color: ${color}`}
+          role="img"
+          aria-label={`${project.title} detail ${i + 1}`}
+        ></div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Next project -->
+  <nav class={styles.next} aria-label="Next project">
+    <div class={styles.nextInner}>
+      <div>
+        <span class={styles.nextLabel}>Next project</span>
+        <a href={`/work/${slug}`} class={styles.nextLink} data-cursor="grow">
+          <span>Nocturne App</span>
+          <span class={styles.nextArrow}>→</span>
+        </a>
+      </div>
+      <a href="/work" class={styles.nextLabel} style="align-self: flex-end">
+        All work →
+      </a>
+    </div>
+  </nav>
+
+</BaseLayout>

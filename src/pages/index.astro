@@ -1,22 +1,102 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import styles from './index.module.scss';
+
+const featured = [
+  { num: '01', title: 'Meridian Studio',   category: 'Brand & Web',      slug: 'example-project', color: '#14142b' },
+  { num: '02', title: 'Nocturne App',      category: 'Product Design',   slug: 'example-project', color: '#2c1b34' },
+  { num: '03', title: 'Soleil Editorial',  category: 'Art Direction',    slug: 'example-project', color: '#1b3226' },
+];
+
+const marqueeItems = [
+  'Creative Development',
+  'Interface Design',
+  'Motion Design',
+  'WebGL & Three.js',
+  'Interaction',
+  'Art Direction',
+];
+const marqueeStr = marqueeItems.map(i => `${i} ·`).join('  ') + '  ';
 ---
 
-<BaseLayout title="Home — Portfolio">
-  <section class="placeholder">
-    <p>Home — coming in Phase 3</p>
-  </section>
-</BaseLayout>
+<BaseLayout title="Portfolio — Creative Developer">
 
-<style>
-.placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  color: var(--color-fg-muted);
-  font-size: var(--text-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-</style>
+  <!-- Hero -->
+  <section class={styles.hero}>
+    <div class={styles.heroInner}>
+      <p class={styles.sectionLabel}>Creative Developer — Available for projects</p>
+      <h1 class={styles.heroTitle}>
+        <span>Design &</span>
+        <span>Development</span>
+      </h1>
+      <div class={styles.heroMeta}>
+        <span class={`${styles.sectionLabel} ${styles.heroScroll}`}>Scroll to explore</span>
+        <span class={styles.sectionLabel}>Est. 2019</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class={styles.intro}>
+    <div class={styles.introInner}>
+      <span class={styles.sectionLabel}>01 / About</span>
+      <div class={styles.introText}>
+        <p>
+          Building thoughtful digital experiences at the intersection of design
+          and technology — from concept to code, with obsessive attention to detail.
+        </p>
+        <p>
+          Based in London. Currently open to freelance and studio collaborations
+          focused on brand, product, and experimental web.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured work -->
+  <section class={styles.featured}>
+    <div class={styles.featuredHeader}>
+      <span class={styles.sectionLabel}>02 / Work</span>
+      <a href="/work" class={styles.viewAll} data-cursor="grow">View all</a>
+    </div>
+    <ul class={styles.featuredGrid}>
+      {featured.map(({ num, title, category, slug, color }) => (
+        <li>
+          <a href={`/work/${slug}`} class={styles.card} data-cursor="grow">
+            <div class={styles.cardImg} style={`background-color: ${color}`}>
+              <span class={styles.cardNum}>{num}</span>
+            </div>
+            <div class={styles.cardInfo}>
+              <span class={styles.cardTitle}>{title}</span>
+              <span class={styles.cardCat}>{category}</span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Marquee — Phase 4 will optionally replace with GSAP; CSS handles it for now -->
+  <div class={styles.marqueeWrap} aria-hidden="true" data-marquee>
+    <div class={styles.marqueeTrack}>
+      <span class={styles.marqueeItem}>{marqueeStr}</span>
+      <span class={styles.marqueeItem}>{marqueeStr}</span>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <section class={styles.contact}>
+    <div class={styles.contactInner}>
+      <span class={styles.sectionLabel}>03 / Contact</span>
+      <h2 class={styles.contactTitle}>Let's work<br />together</h2>
+      <a
+        href="mailto:hello@portfolio.com"
+        class={styles.contactLink}
+        data-cursor="grow"
+      >
+        hello@portfolio.com
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
