@@ -1,0 +1,14 @@
+<!-- Page transition overlay — managed by src/scripts/transitions.js -->
+<div id="page-transition" aria-hidden="true"></div>
+
+<style>
+  #page-transition {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-bg);
+    z-index: var(--z-transition);
+    transform: translateY(100%);
+    pointer-events: none;
+    will-change: transform;
+  }
+</style>

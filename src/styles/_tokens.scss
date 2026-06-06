@@ -54,6 +54,7 @@
   --max-width: 1440px;
   --header-h: 5rem;
   --z-nav: 100;
+  --z-transition: 500; /* above nav, below cursor */
   --z-cursor: 9000;
   --z-preloader: 9999; /* must sit above cursor while loading */
 }

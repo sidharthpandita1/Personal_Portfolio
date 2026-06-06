@@ -4,6 +4,7 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import Cursor from '../components/layout/Cursor.astro';
 import Preloader from '../components/motion/Preloader.astro';
+import PageTransition from '../components/motion/PageTransition.astro';
 import '../styles/global.scss';
 
 interface Props {
@@ -29,6 +30,7 @@ const {
   </head>
   <body class="page">
     <Preloader />
+    <PageTransition />
     <Header />
     <main>
       <slot />
@@ -40,6 +42,7 @@ const {
       import { initLenis, destroyLenis } from '../scripts/lenis.js';
       import { initCursor, destroyCursor } from '../scripts/cursor.js';
       import { initPreloader } from '../scripts/preloader.js';
+      import { playTransitionIn, playTransitionOut } from '../scripts/transitions.js';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
       function init() {
@@ -58,10 +61,18 @@ const {
       // the overlay exits. On repeat visits onDone fires synchronously.
       initPreloader(() => init());
 
-      // Page transitions: preloader is already done (session flag), so init
-      // runs immediately on swap without waiting for any animation.
-      document.addEventListener('astro:before-preparation', cleanup);
-      document.addEventListener('astro:after-swap', init);
+      // Navigation: play transition in (parallel with Astro's page fetch).
+      // event.intercept ensures the DOM swap is held until the overlay covers.
+      document.addEventListener('astro:before-preparation', (event) => {
+        cleanup();
+        event.intercept({ handler: () => playTransitionIn() });
+      });
+
+      // After swap: reveal new page + re-init.
+      document.addEventListener('astro:after-swap', () => {
+        init();
+        playTransitionOut();
+      });
     </script>
   </body>
 </html>
