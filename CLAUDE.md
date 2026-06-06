@@ -104,4 +104,4 @@ npm run preview   # preview the production build
 
 Update this line at the end of each phase so future sessions know where to resume:
 
-> **Current phase:** Phase 4 complete — all Awwwards features shipped. Ready for Phase 5 (polish + deploy).
+> **Current phase:** Phase 5 complete — polish, font loading, accessibility fixes, and deploy config. Ready to deploy (run: npx vercel).
