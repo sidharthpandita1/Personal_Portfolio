@@ -9,8 +9,13 @@ function el() {
 /**
  * Slide overlay in from the bottom. Returns a Promise that resolves when
  * the overlay fully covers the viewport — safe to swap DOM at that point.
+ * Resolves immediately for prefers-reduced-motion users (no visual motion).
  */
 export function playTransitionIn() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return Promise.resolve();
+  }
+
   const overlay = el();
   if (!overlay) return Promise.resolve();
 
@@ -24,8 +29,11 @@ export function playTransitionIn() {
 
 /**
  * Slide overlay out to the top, then reset for the next transition.
+ * No-op for prefers-reduced-motion users.
  */
 export function playTransitionOut() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const overlay = el();
   if (!overlay) return;
 

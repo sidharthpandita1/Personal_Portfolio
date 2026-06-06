@@ -10,12 +10,16 @@ import '../styles/global.scss';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
 const {
-  title = 'Portfolio',
-  description = 'Creative developer portfolio',
+  title = 'SP — Creative Developer',
+  description = 'Creative developer building high-craft digital experiences at the intersection of design and engineering.',
+  ogImage = '/og.png',
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 ---
 
 <html lang="en">
@@ -23,7 +27,30 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+
+    <!-- Canonical + OG -->
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+    <meta name="twitter:card"       content="summary_large_image" />
+    <meta name="twitter:title"      content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"      content={ogImage} />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: DM Sans variable — preconnect first, then load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ClientRouter />

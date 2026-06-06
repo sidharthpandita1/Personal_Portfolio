@@ -3,6 +3,11 @@ const navLinks = [
   { href: '/work', label: 'Work' },
   { href: '/about', label: 'About' },
 ];
+
+const pathname = new URL(Astro.request.url).pathname;
+function isActive(href: string) {
+  return pathname === href || (href !== '/' && pathname.startsWith(href));
+}
 ---
 
 <header class="header">
@@ -11,7 +16,13 @@ const navLinks = [
     <nav class="header__nav" aria-label="Main navigation">
       <ul>
         {navLinks.map(({ href, label }) => (
-          <li><a href={href} data-cursor="grow">{label}</a></li>
+          <li>
+            <a
+              href={href}
+              data-cursor="grow"
+              aria-current={isActive(href) ? 'page' : undefined}
+            >{label}</a>
+          </li>
         ))}
       </ul>
     </nav>
