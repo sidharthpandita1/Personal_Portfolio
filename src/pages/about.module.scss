@@ -160,21 +160,27 @@
 .timelineTrack {
   display: flex;
   gap: clamp(2rem, 6vw, 5rem);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
   padding-bottom: var(--space-3);
   cursor: grab;
 
-  /* Phase 4 will pin + scrub this with ScrollTrigger */
+  // Fallback: native scroll on touch and reduced-motion
+  @include touch {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    cursor: auto;
 
-  &::-webkit-scrollbar {
-    height: 1px;
-    background: var(--color-border);
+    &::-webkit-scrollbar {
+      height: 1px;
+      background: var(--color-border);
+    }
+    &::-webkit-scrollbar-thumb { background: var(--color-fg-muted); }
   }
 
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-fg-muted);
+  @include reduced-motion {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    cursor: auto;
   }
 }
 

@@ -99,3 +99,11 @@ const timeline = [
   </section>
 
 </BaseLayout>
+
+<script>
+  import { initHorizontalScroll, destroyHorizontalScroll } from '../scripts/horizontalScroll.js';
+
+  // Fires after BaseLayout's init() (Lenis + ScrollTrigger ready).
+  document.addEventListener('portfolio:init', initHorizontalScroll);
+  document.addEventListener('astro:before-preparation', destroyHorizontalScroll);
+</script>

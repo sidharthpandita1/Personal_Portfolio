@@ -49,6 +49,8 @@ const {
         initLenis();
         initCursor();
         ScrollTrigger.refresh();
+        // Pages with per-page animations listen for this event.
+        document.dispatchEvent(new CustomEvent('portfolio:init'));
       }
 
       function cleanup() {
